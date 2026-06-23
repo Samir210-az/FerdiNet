@@ -396,7 +396,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-try { db.settings({ experimentalAutoDetectLongPolling: true }); } catch(e) { console.warn('settings:', e); }
+try { db.settings({ experimentalForceLongPolling: true }); } catch(e) { console.warn('settings:', e); }
 
 const CAPTCHA_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 function generateCaptcha(){
