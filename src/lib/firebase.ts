@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { initializeFirestore, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,7 +13,17 @@ const firebaseConfig = {
 
 export const firebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
-export const db = getFirestore(firebaseApp);
+
+// Firestore-u restriktiv şəbəkələr/proxy-lər üçün avtomatik long-polling ilə başlat
+let _db;
+try {
+  _db = initializeFirestore(firebaseApp, {
+    experimentalAutoDetectLongPolling: true,
+  });
+} catch (e) {
+  _db = getFirestore(firebaseApp);
+}
+export const db = _db;
 
 // Müştəri əlavə edərkən admin-in öz sessiyası pozulmasın deyə ikinci app
 import { initializeApp as initSecondary } from "firebase/app";
