@@ -22,12 +22,12 @@ const ICONS = {
 };
 
 const PRESETS: { icon: keyof typeof ICONS; top?: string; left?: string; right?: string; bottom?: string; size: number; speed: number; opacity: number }[] = [
-  { icon: "wifi", top: "12%", left: "6%", size: 46, speed: -0.18, opacity: 0.16 },
-  { icon: "headset", top: "62%", right: "10%", size: 40, speed: 0.22, opacity: 0.16 },
-  { icon: "signal", top: "20%", right: "20%", size: 34, speed: -0.12, opacity: 0.14 },
-  { icon: "router", bottom: "10%", left: "16%", size: 42, speed: 0.16, opacity: 0.15 },
-  { icon: "bolt", top: "8%", right: "32%", size: 30, speed: -0.25, opacity: 0.18 },
-  { icon: "globe", bottom: "18%", right: "6%", size: 50, speed: 0.1, opacity: 0.14 },
+  { icon: "wifi", top: "3%", left: "8%", size: 38, speed: -0.18, opacity: 0.18 },
+  { icon: "bolt", top: "4%", right: "10%", size: 26, speed: -0.25, opacity: 0.2 },
+  { icon: "signal", top: "2%", right: "32%", size: 28, speed: -0.12, opacity: 0.16 },
+  { icon: "globe", bottom: "3%", left: "10%", size: 40, speed: 0.1, opacity: 0.16 },
+  { icon: "headset", bottom: "4%", right: "9%", size: 34, speed: 0.22, opacity: 0.18 },
+  { icon: "router", bottom: "2%", right: "32%", size: 30, speed: 0.16, opacity: 0.16 },
 ];
 
 /**
@@ -35,13 +35,14 @@ const PRESETS: { icon: keyof typeof ICONS; top?: string; left?: string; right?: 
  * compact=true: kiçik (alt səhifə) banner-lər üçün daha az/kiçik element.
  */
 export default function BannerDecor({ compact = false }: { compact?: boolean }) {
-  const items = compact ? PRESETS.slice(0, 3) : PRESETS;
+  const items = compact ? [PRESETS[0], PRESETS[1], PRESETS[4]] : PRESETS;
   return (
     <>
       {items.map((p, i) => (
         <ParallaxBlob
           key={i}
           speed={p.speed}
+          className="banner-decor-item"
           style={{
             top: p.top,
             left: p.left,
