@@ -61,8 +61,10 @@ header.main{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 1
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:30px 26px;transition:.3s}
 .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
-.icon-box{width:54px;height:54px;border-radius:14px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-.icon-box svg{width:26px;height:26px;color:var(--primary)}
+.icon-box{width:54px;height:54px;border-radius:14px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:.3s}
+.icon-box svg{width:26px;height:26px;color:var(--primary);transition:.3s}
+.card:hover .icon-box{transform:scale(1.1) rotate(-4deg)}
+.card:hover .icon-box svg{transform:scale(1.05)}
 
 /* PLANS */
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}

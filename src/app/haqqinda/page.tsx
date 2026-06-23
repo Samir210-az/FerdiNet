@@ -5,10 +5,14 @@ import Link from "next/link";
 export const metadata = { title: "Haqqımızda - FerdiNet" };
 
 const VALUES = [
-  ["Etibarlılıq", "99.9% şəbəkə stabilliyi"],
-  ["Sürət", "1 Gbit/s-ə qədər bağlantı"],
-  ["Dəstək", "24/7 texniki yardım"],
-  ["Şəffaflıq", "Gizli ödəniş yoxdur"],
+  { t: "Etibarlılıq", d: "99.9% şəbəkə stabilliyi", color: "#10b981",
+    icon: <path d="M12 2 4 6v6c0 5.5 3.8 8.7 8 10 4.2-1.3 8-4.5 8-10V6l-8-4z" /> },
+  { t: "Sürət", d: "1 Gbit/s-ə qədər bağlantı", color: "#f59e0b",
+    icon: <path d="M13 2 3 14h7l-1 8 10-12h-7z" /> },
+  { t: "Dəstək", d: "24/7 texniki yardım", color: "#8b5cf6",
+    icon: <><path d="M3 11a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3" /><path d="M3 11v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3" /></> },
+  { t: "Şəffaflıq", d: "Gizli ödəniş yoxdur", color: "#3b82f6",
+    icon: <><circle cx="12" cy="12" r="3" /><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" /></> },
 ];
 
 const TEAM_ROLES = [
@@ -46,11 +50,13 @@ export default function Haqqinda() {
             <span className="eyebrow">Dəyərlərimiz</span>
             <h2 className="section-title">Bizi fərqləndirən prinsiplər</h2>
             <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20,marginTop:30}} className="values-grid-resp">
-              {VALUES.map(([t,d]) => (
-                <div className="card" key={t} style={{textAlign:"center",padding:"24px 18px"}}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{width:32,height:32,color:"var(--primary)",margin:"0 auto 12px"}}><path d="M12 2 2 7v10l10 5 10-5V7z"/></svg>
-                  <h4 style={{fontSize:"1rem",marginBottom:6}}>{t}</h4>
-                  <p style={{fontSize:".85rem",color:"var(--text-muted)"}}>{d}</p>
+              {VALUES.map((v) => (
+                <div className="card" key={v.t} style={{textAlign:"center",padding:"24px 18px"}}>
+                  <div className="icon-box" style={{margin:"0 auto 12px",background:v.color+"1a"}}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke={v.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{width:28,height:28}}>{v.icon}</svg>
+                  </div>
+                  <h4 style={{fontSize:"1rem",marginBottom:6}}>{v.t}</h4>
+                  <p style={{fontSize:".85rem",color:"var(--text-muted)"}}>{v.d}</p>
                 </div>
               ))}
             </div>
