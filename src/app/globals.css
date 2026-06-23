@@ -59,8 +59,8 @@ header.main{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 1
 .stat-num{font-size:1.8rem;font-weight:800;color:var(--primary)}
 .stat-label{font-size:.85rem;color:var(--text-muted)}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:30px 26px;transition:.3s;border:1px solid rgba(31,122,56,.09)}
-.stat,.dash-card,.admin-card,.box,.plan-card,.msg-card,.kabinet-box,.speedtest-box,.contact-info-card,.contact-form{border:1px solid rgba(31,122,56,.09)}
+.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:30px 26px;transition:.3s;border:2px solid var(--primary)}
+.stat,.dash-card,.admin-card,.box,.plan-card,.msg-card,.kabinet-box,.speedtest-box,.contact-info-card,.contact-form{border:2px solid var(--primary)}
 .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
 .icon-box{width:54px;height:54px;border-radius:14px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:.3s}
 .icon-box svg{width:26px;height:26px;color:var(--primary);transition:.3s}
