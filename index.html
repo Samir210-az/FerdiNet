@@ -185,10 +185,10 @@ header.main{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 1
 .speed-val{font-size:2.4rem;font-weight:800;color:var(--primary);line-height:1;word-break:break-word}
 .speed-unit{font-size:.9rem;color:var(--text-muted);margin-top:4px}
 .speed-phase{font-size:.78rem;color:var(--text-muted);margin-top:8px;min-height:14px}
-.speed-results{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
-.speed-results div{background:var(--bg-page);border-radius:12px;padding:14px}
-.speed-results .label{font-size:.8rem;color:var(--text-muted)}
-.speed-results .num{font-size:1.2rem;font-weight:700;color:var(--text-dark)}
+.speed-results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px;width:100%}
+.speed-results div{background:var(--bg-page);border-radius:12px;padding:12px 6px;min-width:0;overflow:hidden}
+.speed-results .label{font-size:.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.speed-results .num{font-size:1.05rem;font-weight:700;color:var(--text-dark);word-break:break-word}
 
 .faq-item{background:#fff;border-radius:14px;box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden}
 .faq-q{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600}
@@ -243,6 +243,9 @@ footer{background:#0f1e14;color:#cfdacd;padding:60px 0 0}
   .form-row{grid-template-columns:1fr}
   .values-grid{grid-template-columns:1fr 1fr}
   .team-grid{grid-template-columns:1fr 1fr}
+  .speedtest-box{padding:26px 16px}
+  .speed-circle{width:170px;height:170px}
+  .speed-val{font-size:1.9rem}
 }
 </style>
 </head>
