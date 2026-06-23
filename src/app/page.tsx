@@ -1,74 +1,71 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { PLANS } from "@/lib/plans";
 
-export const metadata = { title: "Haqqımızda - FerdiNet" };
-
-const VALUES = [
-  ["Etibarlılıq", "99.9% şəbəkə stabilliyi"],
-  ["Sürət", "1 Gbit/s-ə qədər bağlantı"],
-  ["Dəstək", "24/7 texniki yardım"],
-  ["Şəffaflıq", "Gizli ödəniş yoxdur"],
-];
-
-const TEAM_ROLES = [
-  "Baş Direktor",
-  "Texniki Direktor",
-  "Satış üzrə Menecer",
-  "Müştəri Dəstəyi Rəhbəri",
-];
-
-export default function Haqqinda() {
+export default function Home() {
   return (
     <>
       <Header />
-      <section className="banner" style={{padding:"50px 0 40px"}}>
+      <section className="banner">
         <div className="container">
-          <div className="breadcrumb"><Link href="/">Ana Səhifə</Link> › <span>Haqqımızda</span></div>
-          <h1>FerdiNet haqqında</h1>
-          <p>Azərbaycanda yüksək sürətli fiber optik internet xidmətlərinin lider təminatçısı</p>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(255,255,255,.15)",padding:"6px 16px",borderRadius:50,fontSize:".85rem",marginBottom:18,position:"relative",zIndex:2}}>⚡ GPON Fiber Optik Texnologiya</div>
+          <h1>Evinizə ən sürətli fiber internet indi gəlir</h1>
+          <p>FerdiNet ilə kəsilməz, sabit və ultra sürətli internet həzzini yaşayın. Limitsiz tariflər, 24/7 dəstək və pulsuz quraşdırma.</p>
+          <div className="banner-buttons">
+            <Link href="/tariflar" className="btn btn-light">Tarifləri Gör</Link>
+            <Link href="/elaqe" className="btn btn-outline-white">Bizimlə Əlaqə</Link>
+          </div>
         </div>
       </section>
 
+      <div className="container">
+        <div className="stats">
+          <div className="stat"><div className="stat-num">1000+</div><div className="stat-label">Məmnun Müştəri</div></div>
+          <div className="stat"><div className="stat-num">99.9%</div><div className="stat-label">Əlaqə Stabilliyi</div></div>
+          <div className="stat"><div className="stat-num">24/7</div><div className="stat-label">Texniki Dəstək</div></div>
+          <div className="stat"><div className="stat-num">1000</div><div className="stat-label">Mbit/s Maks. sürət</div></div>
+          <div className="stat"><div className="stat-num">Limitsiz</div><div className="stat-label">Təhlükəsiz</div></div>
+        </div>
+      </div>
+
       <section className="section">
         <div className="container">
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:50,alignItems:"center"}} className="about-grid-resp">
-            <div style={{width:"100%",borderRadius:"var(--radius)",boxShadow:"var(--shadow)",background:"linear-gradient(135deg,#2e9e4d,#5cc97f)",minHeight:340,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:"4rem",fontWeight:800}}>FN</div>
-            <div>
-              <h2 style={{fontSize:"1.9rem",marginBottom:16}}>Bizim Hekayəmiz</h2>
-              <p style={{color:"var(--text-muted)",marginBottom:16}}>FerdiNet, müştərilərinə ən sürətli və etibarlı internet bağlantısını təmin etmək məqsədilə qurulmuş telekommunikasiya şirkətidir. GPON fiber optik texnologiyası ilə evlərə və ofislərə limitsiz, kəsilməz internet çatdırırıq.</p>
-              <p style={{color:"var(--text-muted)",marginBottom:16}}>Komandamız hər gün minlərlə müştəriyə xidmət göstərərək, şəbəkə stabilliyini, sürəti və müştəri məmnuniyyətini ön planda tutur. Bizim üçün hər bir müştəri etibar deməkdir.</p>
-              <p style={{color:"var(--text-muted)"}}>Bu gün 1000-dən çox məmnun müştəri ilə Bakı və ətraf ərazilərdə fəaliyyət göstəririk və şəbəkəmizi davamlı olaraq genişləndiririk.</p>
-            </div>
-          </div>
-
-          <div style={{marginTop:60}}>
-            <span className="eyebrow">Dəyərlərimiz</span>
-            <h2 className="section-title">Bizi fərqləndirən prinsiplər</h2>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20,marginTop:30}} className="values-grid-resp">
-              {VALUES.map(([t,d]) => (
-                <div className="card" key={t} style={{textAlign:"center",padding:"24px 18px"}}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{width:32,height:32,color:"var(--primary)",margin:"0 auto 12px"}}><path d="M12 2 2 7v10l10 5 10-5V7z"/></svg>
-                  <h4 style={{fontSize:"1rem",marginBottom:6}}>{t}</h4>
-                  <p style={{fontSize:".85rem",color:"var(--text-muted)"}}>{d}</p>
-                </div>
-              ))}
-            </div>
+          <span className="eyebrow">Niyə Biz?</span>
+          <h2 className="section-title">FerdiNet-in üstünlükləri</h2>
+          <p className="section-sub">Müştərilərimizin etibarını qazanmağımızın səbəbləri</p>
+          <div className="grid-3">
+            {[
+              ["Yüksək Sürət","GPON fiber optik ilə 1 Gbit/s-ə qədər sürət"],
+              ["Limitsiz Trafik","Bütün tariflərdə limitsiz internet"],
+              ["Pulsuz Quraşdırma","Mütəxəssis komandamız tərəfindən"],
+              ["24/7 Dəstək","İstənilən vaxt yardıma hazır komanda"],
+              ["Sərfəli Qiymət","Ən yaxşı qiymət-keyfiyyət nisbəti"],
+              ["Stabil Bağlantı","99.9% şəbəkə stabilliyi"],
+            ].map(([t,d]) => (
+              <div className="card" key={t}>
+                <div className="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2 2 7v10l10 5 10-5V7z"/></svg></div>
+                <h3>{t}</h3><p style={{color:"var(--text-muted)",fontSize:".92rem"}}>{d}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="section section-alt">
         <div className="container">
-          <span className="eyebrow">Komandamız</span>
-          <h2 className="section-title">Bizimlə tanış olun</h2>
-          <p className="section-sub">FerdiNet-i irəli aparan komanda üzvləri</p>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:24}} className="team-grid-resp">
-            {TEAM_ROLES.map((role) => (
-              <div className="card" key={role} style={{textAlign:"center",padding:"26px 18px"}}>
-                <div style={{width:80,height:80,borderRadius:"50%",background:"var(--primary-light)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 14px",fontWeight:800,color:"var(--primary)",fontSize:"1.6rem"}}>?</div>
-                <h4 style={{fontSize:"1rem",marginBottom:4}}>&nbsp;</h4>
-                <span style={{fontSize:".85rem",color:"var(--text-muted)"}}>{role}</span>
+          <span className="eyebrow">Tariflər</span>
+          <h2 className="section-title">Sizə uyğun tarifi seçin</h2>
+          <p className="section-sub">Bütün tariflərimiz limitsiz trafik ilə təqdim olunur</p>
+          <div className="plans-grid">
+            {PLANS.map((p) => (
+              <div className={"plan-card" + (p.popular ? " popular" : "")} key={p.name}>
+                {p.popular && <div className="badge-popular">⭐ Ən Populyar</div>}
+                <div className="plan-name">{p.name}</div>
+                <div className="plan-speed">{p.speed}<span>Mbit/s</span></div>
+                <div className="plan-price">{p.price} ₼<span>/ay</span></div>
+                <ul className="plan-features"><li>✓ Limitsiz İnternet</li><li>✓ Pulsuz Quraşdırma</li><li>✓ Wi-Fi Modem Daxil</li><li>✓ 24/7 Dəstək</li></ul>
+                <Link href="/elaqe" className="btn btn-primary">Seç</Link>
               </div>
             ))}
           </div>
@@ -77,11 +74,11 @@ export default function Haqqinda() {
 
       <section className="section">
         <div className="cta container">
-          <h2>Bizimlə qoşulmağa hazırsınız?</h2>
-          <p>FerdiNet ailəsinə qoşulun, sürətli internetin fərqini hiss edin</p>
+          <h2>Qoşulma PULSUZ</h2>
+          <p>Yeni müştərilərimizə xüsusi kampaniya — qoşulma tamamilə pulsuz</p>
           <div className="cta-buttons">
-            <Link href="/tariflar" className="btn btn-light">Tarifləri Gör</Link>
-            <Link href="/elaqe" className="btn btn-outline-white">Bizimlə Əlaqə</Link>
+            <Link href="/elaqe" className="btn btn-light">İndi Qoşul</Link>
+            <Link href="/tariflar" className="btn btn-outline-white">Tarifləri Gör</Link>
           </div>
         </div>
       </section>
