@@ -325,6 +325,7 @@ footer{background:#0f1e14;color:#cfdacd;padding:60px 0 0}
           <div class="form-group"><label>Şifrə</label><input type="text" id="nc_password" required placeholder="Müştəri şifrəsi"></div>
           <div class="form-group"><label>Ad Soyad</label><input type="text" id="nc_ad" required placeholder="Ad Soyad"></div>
           <div class="form-group"><label>Telefon</label><input type="text" id="nc_telefon" placeholder="+994 XX XXX XX XX"></div>
+          <div class="form-group"><label>Email (bildirişlər üçün)</label><input type="email" id="nc_customer_email" placeholder="musteri@example.com"></div>
           <div class="form-group">
             <label>Tarif</label>
             <select id="nc_tarif">
@@ -357,7 +358,7 @@ footer{background:#0f1e14;color:#cfdacd;padding:60px 0 0}
           <table class="data-table" id="customersTable">
             <thead>
               <tr>
-                <th>Abonent Kodu</th><th>Ad</th><th>Telefon</th><th>Tarif</th>
+                <th>Abonent Kodu</th><th>Ad</th><th>Telefon</th><th>Email</th><th>Tarif</th>
                 <th>Status</th><th>Balans (₼)</th><th>Son Ödəniş</th><th>Bağlanma</th><th></th>
               </tr>
             </thead>
@@ -471,6 +472,7 @@ function loadCustomers(){
         <td>${d.abonentKod || ''}</td>
         <td><input type="text" value="${d.ad||''}" data-field="ad"></td>
         <td><input type="text" value="${d.telefon||''}" data-field="telefon"></td>
+        <td><input type="email" value="${d.email||''}" data-field="email"></td>
         <td>
           <select data-field="tarif">
             ${['START','BASIC','STANDART','PREMIUM','ULTRA','MAX'].map(t=>`<option ${d.tarif===t?'selected':''}>${t}</option>`).join('')}
@@ -538,6 +540,7 @@ document.getElementById('addCustomerForm').addEventListener('submit', function(e
         abonentKod: abonentKod,
         ad: document.getElementById('nc_ad').value.trim(),
         telefon: document.getElementById('nc_telefon').value.trim(),
+        email: document.getElementById('nc_customer_email').value.trim(),
         tarif: document.getElementById('nc_tarif').value,
         status: document.getElementById('nc_status').value,
         balans: parseFloat(document.getElementById('nc_balans').value) || 0,
