@@ -393,7 +393,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-db.settings({ experimentalForceLongPolling: true, merge: true });
+try { db.settings({ experimentalAutoDetectLongPolling: true }); } catch(e) { console.warn('settings:', e); }
 
 function showLoginErr(msg){
   const box = document.getElementById('adminLoginError');
