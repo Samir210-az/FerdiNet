@@ -28,7 +28,10 @@ export default function Tariflar() {
                 <div className="plan-speed">{p.speed}<span>Mbit/s</span></div>
                 <div className="plan-price">{p.price} ₼<span>/ay</span></div>
                 <ul className="plan-features"><li>✓ Limitsiz İnternet</li><li>✓ Pulsuz Quraşdırma</li><li>✓ Wi-Fi Modem Daxil</li><li>✓ 24/7 Dəstək</li></ul>
-                <Link href="/elaqe" className="btn btn-primary">Seç</Link>
+                <div style={{display:"flex",flexDirection:"column",gap:10}}>
+                  <Link href="/elaqe" className="btn btn-primary">Seç</Link>
+                  <Link href="/elaqe" className="btn btn-outline btn-sm">Sual Ver</Link>
+                </div>
               </div>
             ))}
           </div>
