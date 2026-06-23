@@ -28,14 +28,17 @@ const PRESETS: { icon: keyof typeof ICONS; top?: string; left?: string; right?: 
   { icon: "globe", bottom: "3%", left: "10%", size: 40, speed: 0.1, opacity: 0.16 },
   { icon: "headset", bottom: "4%", right: "9%", size: 34, speed: 0.22, opacity: 0.18 },
   { icon: "router", bottom: "2%", right: "32%", size: 30, speed: 0.16, opacity: 0.16 },
+  { icon: "headset", top: "3%", left: "32%", size: 30, speed: -0.15, opacity: 0.16 },
+  { icon: "router", top: "4%", right: "45%", size: 24, speed: 0.18, opacity: 0.15 },
 ];
 
 /**
  * Banner daxilində üzən, parallax + daimi "float" hərəkəti olan ikon nişanları.
  * compact=true: kiçik (alt səhifə) banner-lər üçün daha az/kiçik element.
  */
-export default function BannerDecor({ compact = false }: { compact?: boolean }) {
-  const items = compact ? [PRESETS[0], PRESETS[1], PRESETS[4]] : PRESETS;
+export default function BannerDecor({ compact = false, noBottom = false }: { compact?: boolean; noBottom?: boolean }) {
+  let items = compact ? [PRESETS[0], PRESETS[1], PRESETS[4]] : PRESETS;
+  if (noBottom) items = items.filter((p) => !p.bottom);
   return (
     <>
       {items.map((p, i) => (
