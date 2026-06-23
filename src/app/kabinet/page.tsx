@@ -49,7 +49,7 @@ export default function Kabinet() {
         setData({ ...snap.data(), abonentKod: abonent });
       }
     } catch (e: any) {
-      setErr("Abonent kodu və ya şifrə yanlışdır.");
+      setErr("Telefon nömrəsi və ya şifrə yanlışdır.");
       setCaptcha(genCaptcha()); setCaptchaInput("");
     }
     setLoading(false);
@@ -76,8 +76,8 @@ export default function Kabinet() {
               <p className="sub">Hesabınıza daxil olmaq üçün məlumatlarınızı daxil edin</p>
               <form onSubmit={handleLogin}>
                 <div className="form-group">
-                  <label>Abonent kodu</label>
-                  <input value={abonent} onChange={e => setAbonent(e.target.value)} required placeholder="Abonent kodunuzu daxil edin" />
+                  <label>Telefon nömrəsi</label>
+                  <input value={abonent} onChange={e => setAbonent(e.target.value)} required placeholder="+994 XX XXX XX XX" />
                 </div>
                 <div className="form-group">
                   <label>Şifrə</label>
@@ -113,7 +113,7 @@ export default function Kabinet() {
               <div className="dash-grid" style={{marginTop:18}}>
                 <div className="dash-card"><h4>Son Ödəniş Tarixi</h4><div className="val" style={{fontSize:"1.2rem"}}>{fmtDate(data.sonOdenisTarixi)}</div></div>
                 <div className="dash-card"><h4>Bağlanma Tarixi</h4><div className="val" style={{fontSize:"1.2rem"}}>{fmtDate(data.baglanmaTarixi)}</div></div>
-                <div className="dash-card"><h4>Abonent Kodu</h4><div className="val" style={{fontSize:"1.2rem"}}>{data.abonentKod}</div></div>
+                <div className="dash-card"><h4>Telefon Nömrəsi</h4><div className="val" style={{fontSize:"1.2rem"}}>{data.telefon || data.abonentKod}</div></div>
               </div>
               {isClosed && <div className="alert alert-err" style={{marginTop:20,textAlign:"center",background:"#eee",color:"#555",border:"1px solid #ddd"}}>Xidmətiniz bağlanıb. Yenidən aktivləşdirmək üçün bizimlə əlaqə saxlayın.</div>}
               {!isClosed && isDebt && <div className="alert alert-err" style={{marginTop:20,textAlign:"center"}}>Hesabınızda {Math.abs(balans).toFixed(2)} ₼ borc var. Xidmətin kəsilməməsi üçün ödənişi vaxtında edin.</div>}

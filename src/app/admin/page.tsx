@@ -107,7 +107,14 @@ function CustomersTab({ customers, reload, loading }: any) {
   const [nc, setNc] = useState({ abonentKod:"", password:"", ad:"", telefon:"", email:"", tarif:"PREMIUM", status:"aktiv", balans:"0", sonOdenis:"", baglanma:"" });
   const [addErr, setAddErr] = useState(""); const [addOk, setAddOk] = useState(false); const [adding, setAdding] = useState(false);
 
-  function u(k:string,v:string){ setNc({...nc,[k]:v}); }
+  function u(k:string,v:string){
+    if (k === "telefon") {
+      const digits = v.replace(/[^0-9]/g, "");
+      setNc({ ...nc, telefon: v, abonentKod: digits });
+    } else {
+      setNc({...nc,[k]:v});
+    }
+  }
 
   async function addCustomer(e: React.FormEvent) {
     e.preventDefault(); setAddErr(""); setAddOk(false); setAdding(true);
@@ -136,10 +143,13 @@ function CustomersTab({ customers, reload, loading }: any) {
       <div className="admin-card">
         <h3>Yeni Müştəri Əlavə Et</h3>
         <form onSubmit={addCustomer} className="add-grid">
-          <div className="form-group" style={{margin:0}}><label>Abonent Kodu</label><input value={nc.abonentKod} onChange={e=>u("abonentKod",e.target.value)} required placeholder="məs. AZ1024" /></div>
+          <div className="form-group" style={{margin:0}}><label>Telefon</label><input value={nc.telefon} onChange={e=>u("telefon",e.target.value)} required placeholder="+994 XX XXX XX XX" /></div>
+          <div className="form-group" style={{margin:0}}>
+            <label>Abonent Kodu <span style={{color:"var(--text-muted)",fontWeight:400,fontSize:".78rem"}}>(avtomatik, telefondan)</span></label>
+            <input value={nc.abonentKod} readOnly required placeholder="Əvvəlcə telefonu yazın" style={{background:"#eef3ee",color:"var(--text-muted)"}} />
+          </div>
           <div className="form-group" style={{margin:0}}><label>Şifrə</label><input value={nc.password} onChange={e=>u("password",e.target.value)} required placeholder="Müştəri şifrəsi" /></div>
           <div className="form-group" style={{margin:0}}><label>Ad Soyad</label><input value={nc.ad} onChange={e=>u("ad",e.target.value)} required placeholder="Ad Soyad" /></div>
-          <div className="form-group" style={{margin:0}}><label>Telefon</label><input value={nc.telefon} onChange={e=>u("telefon",e.target.value)} placeholder="+994 XX XXX XX XX" /></div>
           <div className="form-group" style={{margin:0}}><label>Email (bildiriş)</label><input type="email" value={nc.email} onChange={e=>u("email",e.target.value)} placeholder="musteri@mail.com" /></div>
           <div className="form-group" style={{margin:0}}><label>Tarif</label><select value={nc.tarif} onChange={e=>u("tarif",e.target.value)}>{TARIFLER.map(t=><option key={t}>{t}</option>)}</select></div>
           <div className="form-group" style={{margin:0}}><label>Status</label><select value={nc.status} onChange={e=>u("status",e.target.value)}><option value="aktiv">Aktiv</option><option value="borclu">Borclu</option><option value="bagli">Bağlı</option></select></div>
