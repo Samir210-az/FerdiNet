@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Header />
       <section className="banner">
-        <BannerDecor />
+        <BannerDecor noBottom />
         <div className="container">
           <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(255,255,255,.15)",padding:"6px 16px",borderRadius:50,fontSize:".85rem",marginBottom:18,position:"relative",zIndex:2}}>⚡ GPON Fiber Optik Texnologiya</div>
           <h1>Evinizə ən sürətli fiber internet indi gəlir</h1>

@@ -34,8 +34,9 @@ const PRESETS: { icon: keyof typeof ICONS; top?: string; left?: string; right?: 
  * Banner daxilində üzən, parallax + daimi "float" hərəkəti olan ikon nişanları.
  * compact=true: kiçik (alt səhifə) banner-lər üçün daha az/kiçik element.
  */
-export default function BannerDecor({ compact = false }: { compact?: boolean }) {
-  const items = compact ? [PRESETS[0], PRESETS[1], PRESETS[4]] : PRESETS;
+export default function BannerDecor({ compact = false, noBottom = false }: { compact?: boolean; noBottom?: boolean }) {
+  let items = compact ? [PRESETS[0], PRESETS[1], PRESETS[4]] : PRESETS;
+  if (noBottom) items = items.filter((p) => !p.bottom);
   return (
     <>
       {items.map((p, i) => (
