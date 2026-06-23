@@ -396,14 +396,13 @@ const firebaseConfig = {
   apiKey: "AIzaSyAyEHg7COtoNNZ8VjYm5jqyARGquWOFMLQ",
   authDomain: "ferdinet-az.firebaseapp.com",
   projectId: "ferdinet-az",
-  storageBucket: "ferdinet-az.firebasestorage.app",
+  storageBucket: "ferdinet-az.appspot.com",
   messagingSenderId: "543169501722",
   appId: "1:543169501722:web:ad251b5663258b6bbd4fa3"
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-try { db.settings({ experimentalForceLongPolling: true }); } catch(e) { console.warn('settings:', e); }
 
 document.getElementById('submitBtn').addEventListener('click', function(e){
   e.preventDefault();
