@@ -358,7 +358,7 @@ footer{background:#0f1e14;color:#cfdacd;padding:60px 0 0}
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" onsubmit="return false;">
         <h3 style="margin-bottom:4px">Mesaj Göndərin</h3>
         <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:10px">Formu doldurun, ən qısa zamanda sizinlə əlaqə saxlayacağıq</p>
         <div class="form-row">
@@ -378,7 +378,7 @@ footer{background:#0f1e14;color:#cfdacd;padding:60px 0 0}
         <div class="form-group"><label>Mesajınız</label><textarea id="f_mesaj" rows="4" required placeholder="Mesajınızı yazın..."></textarea></div>
         <div class="form-msg" id="formMsg">✓ Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlayacağıq.</div>
         <div class="form-error" id="formErr">Mesaj göndərilmədi. Zəhmət olmasa bir az sonra yenidən cəhd edin.</div>
-        <button type="submit" class="btn btn-primary" id="submitBtn">Mesajı Göndər</button>
+        <button type="button" class="btn btn-primary" id="submitBtn">Mesajı Göndər</button>
       </form>
     </div>
 
@@ -405,9 +405,9 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 db.settings({ experimentalForceLongPolling: true, merge: true });
 
-document.getElementById('contactForm').addEventListener('submit', function(e){
+document.getElementById('submitBtn').addEventListener('click', function(e){
   e.preventDefault();
-  const form = this;
+  const form = document.getElementById('contactForm');
   const btn = document.getElementById('submitBtn');
   const msg = document.getElementById('formMsg');
   const err = document.getElementById('formErr');

@@ -328,7 +328,7 @@ footer{background:#0f1e14;color:#cfdacd;padding:60px 0 0}
     <div class="kabinet-box" id="loginBox">
       <h2>Şəxsi Kabinet</h2>
       <p class="sub">Hesabınıza daxil olmaq üçün məlumatlarınızı daxil edin</p>
-      <form id="loginForm">
+      <form id="loginForm" onsubmit="return false;">
         <div class="form-group">
           <label>Abonent kodu</label>
           <input type="text" id="abonentInput" required placeholder="Abonent kodunuzu daxil edin">
@@ -351,7 +351,7 @@ footer{background:#0f1e14;color:#cfdacd;padding:60px 0 0}
           <input type="text" id="captchaInput" required placeholder="Yuxarıdakı kodu daxil edin" style="margin-top:4px">
         </div>
         <div class="form-error" id="loginError"></div>
-        <button type="submit" class="btn btn-primary" id="loginSubmitBtn">Daxil Ol</button>
+        <button type="button" class="btn btn-primary" id="loginSubmitBtn">Daxil Ol</button>
       </form>
       <div class="kabinet-links">Hesabınız yoxdur? <a href="elaqe.html">Qoşulun</a></div>
     </div>
@@ -472,7 +472,7 @@ function renderDashboard(data, abonentKod){
   }
 }
 
-document.getElementById('loginForm').addEventListener('submit', function(e){
+document.getElementById('loginSubmitBtn').addEventListener('click', function(e){
   e.preventDefault();
   clearError();
   const entered = document.getElementById('captchaInput').value.trim().toUpperCase();
