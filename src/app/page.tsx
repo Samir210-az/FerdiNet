@@ -2,15 +2,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { PLANS } from "@/lib/plans";
-import ParallaxBlob from "@/components/Parallax";
+import BannerDecor from "@/components/BannerDecor";
 
 export default function Home() {
   return (
     <>
       <Header />
       <section className="banner">
-        <ParallaxBlob speed={0.25} style={{width:480,height:480,borderRadius:"50%",background:"rgba(255,255,255,.08)",top:-180,right:-120}} />
-        <ParallaxBlob speed={-0.15} style={{width:260,height:260,borderRadius:"50%",background:"rgba(255,255,255,.07)",bottom:-120,left:-80}} />
+        <BannerDecor />
         <div className="container">
           <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(255,255,255,.15)",padding:"6px 16px",borderRadius:50,fontSize:".85rem",marginBottom:18,position:"relative",zIndex:2}}>⚡ GPON Fiber Optik Texnologiya</div>
           <h1>Evinizə ən sürətli fiber internet indi gəlir</h1>

@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import BannerDecor from "@/components/BannerDecor";
 
 export const metadata = { title: "Haqqımızda - FerdiNet" };
 
@@ -27,6 +28,7 @@ export default function Haqqinda() {
     <>
       <Header />
       <section className="banner" style={{padding:"50px 0 40px"}}>
+        <BannerDecor compact />
         <div className="container">
           <div className="breadcrumb"><Link href="/">Ana Səhifə</Link> › <span>Haqqımızda</span></div>
           <h1>FerdiNet haqqında</h1>

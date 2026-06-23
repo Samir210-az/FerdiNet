@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import BannerDecor from "@/components/BannerDecor";
 import { useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -31,6 +32,7 @@ export default function Elaqe() {
     <>
       <Header />
       <section className="banner" style={{padding:"50px 0 40px"}}>
+        <BannerDecor compact />
         <div className="container">
           <div className="breadcrumb"><Link href="/">Ana Səhifə</Link> › <span>Əlaqə</span></div>
           <h1>Bizimlə Əlaqə</h1>

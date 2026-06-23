@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import BannerDecor from "@/components/BannerDecor";
 import { PLANS } from "@/lib/plans";
 
 export const metadata = { title: "Tariflər - FerdiNet" };
@@ -10,6 +11,7 @@ export default function Tariflar() {
     <>
       <Header />
       <section className="banner" style={{padding:"50px 0 40px"}}>
+        <BannerDecor compact />
         <div className="container">
           <div className="breadcrumb"><Link href="/">Ana Səhifə</Link> › <span>Tariflər</span></div>
           <h1>İnternet Tarifləri — Sürətli, Limitsiz, Sərfəli</h1>
@@ -40,7 +42,7 @@ export default function Tariflar() {
             {[
               { t: "İlk Ay Pulsuz", d: "Yeni müştərilər üçün ilk ay tamamilə pulsuzdur.", color: "#f59e0b",
                 icon: <><path d="M12 1v6m0 10v6M4.2 4.2l4.2 4.2m7.2 7.2 4.2 4.2M1 12h6m10 0h6M4.2 19.8l4.2-4.2m7.2-7.2 4.2-4.2"/></> },
-              { t: "İllik Ödəniş İndirimi", d: "İl ərzində ödəyənlərə 2 ay pulsuz hədiyyə.", color: "#3b82f6",
+              { t: "İllik Ödəniş Endirimi", d: "İl ərzində ödəyənlərə 2 ay pulsuz hədiyyə.", color: "#3b82f6",
                 icon: <><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16l2 2 4-4"/></> },
               { t: "Dost Gətir", d: "Hər dost üçün hesabınıza 1 ay pulsuz internet.", color: "#ec4899",
                 icon: <><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><circle cx="18" cy="7" r="3" opacity=".6"/><path d="M22 21v-2a3 3 0 0 0-2-2.83"/></> },
