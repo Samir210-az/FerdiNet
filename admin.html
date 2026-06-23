@@ -429,9 +429,9 @@ document.getElementById('adminLoginForm').addEventListener('submit', function(e)
       loadCustomers();
       loadMessages();
     })
-    .catch(() => {
+    .catch(err => {
       btn.disabled = false; btn.textContent = 'Daxil Ol';
-      errBox.textContent = 'Email və ya şifrə yanlışdır.';
+      errBox.textContent = 'Xəta: ' + (err.code || '') + ' — ' + (err.message || 'Naməlum xəta');
       errBox.classList.add('show');
     });
 });
