@@ -53,7 +53,7 @@ header.main{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 1
 .breadcrumb a:hover{color:#fff}
 
 /* CARDS / GRID */
-.stats{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);margin-top:-40px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.stats{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);margin-top:-40px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));overflow:hidden;border:2px solid var(--primary)}
 .stat{text-align:center;padding:28px 10px;border-right:1px solid #eef3ef;min-width:0;overflow-wrap:break-word}
 .stat:last-child{border-right:none}
 .stat-num{font-size:1.8rem;font-weight:800;color:var(--primary)}
