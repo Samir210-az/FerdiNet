@@ -183,6 +183,33 @@ header.main{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 1
 .captcha-refresh svg{width:18px;height:18px;color:var(--primary)}
 .form-error{display:none;padding:10px 14px;border-radius:10px;font-size:.85rem;background:#fdecec;color:#b42318;border:1px solid #f6c9c6}
 .form-error.show{display:block}
+
+/* ADMIN PANEL */
+.admin-tabs{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap}
+.admin-tab{padding:10px 20px;border-radius:50px;background:#fff;border:1.5px solid #e2ece2;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--text-muted)}
+.admin-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.admin-panel-section{display:none}
+.admin-panel-section.active{display:block}
+.admin-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:24px}
+.admin-card h3{margin-bottom:16px;font-size:1.1rem}
+.table-wrap{overflow-x:auto}
+table.data-table{width:100%;border-collapse:collapse;font-size:.88rem}
+table.data-table th{text-align:left;padding:10px 8px;color:var(--text-muted);font-weight:600;border-bottom:2px solid var(--bg-page);white-space:nowrap}
+table.data-table td{padding:8px;border-bottom:1px solid var(--bg-page);white-space:nowrap}
+table.data-table input,table.data-table select{padding:6px 8px;border:1px solid #e2ece2;border-radius:8px;font-size:.85rem;font-family:inherit;width:100%;min-width:90px}
+.badge{display:inline-block;padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:700}
+.badge-active{background:#e3f7e9;color:#1f7a38}
+.badge-debt{background:#fdecec;color:#b42318}
+.badge-closed{background:#eee;color:#666}
+.btn-sm{padding:6px 14px;font-size:.8rem;border-radius:8px}
+.msg-card{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border-left:4px solid var(--primary)}
+.msg-card.read{border-left-color:#ccc;opacity:.7}
+.msg-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.msg-head strong{font-size:.95rem}
+.msg-head span{font-size:.78rem;color:var(--text-muted)}
+.msg-actions{display:flex;gap:8px;margin-top:10px}
+.add-customer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:768px){.add-customer-grid{grid-template-columns:1fr 1fr}}
 .dashboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
 .dash-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
 .dash-card h4{color:var(--text-muted);font-size:.85rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}

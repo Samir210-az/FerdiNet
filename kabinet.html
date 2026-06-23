@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Şəxsi Kabinet - FerdiNet</title>
-<meta name="description" content="FerdiNet şəxsi kabinetinə daxil olun və hesabınızı idarə edin.">
+<meta name="description" content="FerdiNet şəxsi kabinetinə daxil olun, balansınızı və hesabınızın statusunu yoxlayın.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ferdinet.az/kabinet.html">
 <meta name="theme-color" content="#2e9e4d">
@@ -183,6 +183,33 @@ header.main{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 1
 .captcha-refresh svg{width:18px;height:18px;color:var(--primary)}
 .form-error{display:none;padding:10px 14px;border-radius:10px;font-size:.85rem;background:#fdecec;color:#b42318;border:1px solid #f6c9c6}
 .form-error.show{display:block}
+
+/* ADMIN PANEL */
+.admin-tabs{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap}
+.admin-tab{padding:10px 20px;border-radius:50px;background:#fff;border:1.5px solid #e2ece2;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--text-muted)}
+.admin-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.admin-panel-section{display:none}
+.admin-panel-section.active{display:block}
+.admin-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:24px}
+.admin-card h3{margin-bottom:16px;font-size:1.1rem}
+.table-wrap{overflow-x:auto}
+table.data-table{width:100%;border-collapse:collapse;font-size:.88rem}
+table.data-table th{text-align:left;padding:10px 8px;color:var(--text-muted);font-weight:600;border-bottom:2px solid var(--bg-page);white-space:nowrap}
+table.data-table td{padding:8px;border-bottom:1px solid var(--bg-page);white-space:nowrap}
+table.data-table input,table.data-table select{padding:6px 8px;border:1px solid #e2ece2;border-radius:8px;font-size:.85rem;font-family:inherit;width:100%;min-width:90px}
+.badge{display:inline-block;padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:700}
+.badge-active{background:#e3f7e9;color:#1f7a38}
+.badge-debt{background:#fdecec;color:#b42318}
+.badge-closed{background:#eee;color:#666}
+.btn-sm{padding:6px 14px;font-size:.8rem;border-radius:8px}
+.msg-card{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border-left:4px solid var(--primary)}
+.msg-card.read{border-left-color:#ccc;opacity:.7}
+.msg-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.msg-head strong{font-size:.95rem}
+.msg-head span{font-size:.78rem;color:var(--text-muted)}
+.msg-actions{display:flex;gap:8px;margin-top:10px}
+.add-customer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:768px){.add-customer-grid{grid-template-columns:1fr 1fr}}
 .dashboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
 .dash-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
 .dash-card h4{color:var(--text-muted);font-size:.85rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
@@ -323,30 +350,53 @@ footer{background:#0f1e14;color:#cfdacd;padding:60px 0 0}
           </div>
           <input type="text" id="captchaInput" required placeholder="Yuxarıdakı kodu daxil edin" style="margin-top:4px">
         </div>
-        <div class="form-error" id="loginError">Daxil etdiyiniz təhlükəsizlik kodu yanlışdır. Yenidən cəhd edin.</div>
-        <button type="submit" class="btn btn-primary">Daxil Ol</button>
+        <div class="form-error" id="loginError"></div>
+        <button type="submit" class="btn btn-primary" id="loginSubmitBtn">Daxil Ol</button>
       </form>
       <div class="kabinet-links">Hesabınız yoxdur? <a href="elaqe.html">Qoşulun</a></div>
     </div>
 
     <div id="dashboardBox" style="display:none">
       <div style="text-align:center;margin-bottom:10px">
-        <h2>Xoş gəlmisiniz!</h2>
+        <h2 id="welcomeName">Xoş gəlmisiniz!</h2>
         <p style="color:var(--text-muted)">Hesabınızın ümumi məlumatları aşağıdadır</p>
       </div>
       <div class="dashboard-grid">
-        <div class="dash-card"><h4>Aktiv Tarif</h4><div class="val">PREMIUM</div></div>
-        <div class="dash-card"><h4>Sürət</h4><div class="val">500 Mbit/s</div></div>
-        <div class="dash-card"><h4>Növbəti Ödəniş</h4><div class="val">40 ₼</div></div>
+        <div class="dash-card"><h4>Aktiv Tarif</h4><div class="val" id="dashTarif">—</div></div>
+        <div class="dash-card"><h4>Hesab Statusu</h4><div class="val" id="dashStatus">—</div></div>
+        <div class="dash-card"><h4>Balans</h4><div class="val" id="dashBalans">—</div></div>
       </div>
+      <div class="dashboard-grid" style="margin-top:18px">
+        <div class="dash-card"><h4>Son Ödəniş Tarixi</h4><div class="val" id="dashSonOdenis" style="font-size:1.2rem">—</div></div>
+        <div class="dash-card"><h4>Xidmətin Bağlanma Tarixi</h4><div class="val" id="dashBaglanma" style="font-size:1.2rem">—</div></div>
+        <div class="dash-card"><h4>Abonent Kodu</h4><div class="val" id="dashAbonent" style="font-size:1.2rem">—</div></div>
+      </div>
+      <div id="debtWarning" class="form-error" style="display:none;margin-top:20px;text-align:center"></div>
       <div style="text-align:center;margin-top:30px">
         <button class="btn btn-outline" id="logoutBtn">Çıxış Et</button>
       </div>
     </div>
+
+    <div id="loadingBox" style="display:none;text-align:center;padding:40px;color:var(--text-muted)">Yüklənir...</div>
   </div>
 </section>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAyEHg7COtoNNZ8VjYm5jqyARGquWOFMLQ",
+  authDomain: "ferdinet-az.firebaseapp.com",
+  projectId: "ferdinet-az",
+  storageBucket: "ferdinet-az.firebasestorage.app",
+  messagingSenderId: "543169501722",
+  appId: "1:543169501722:web:ad251b5663258b6bbd4fa3"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
 const CAPTCHA_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 function generateCaptcha(){
   let code = '';
@@ -370,32 +420,111 @@ document.getElementById('togglePass').addEventListener('click', function(){
   this.textContent = isHidden ? 'Gizlət' : 'Göstər';
 });
 
+function showError(msg){
+  const box = document.getElementById('loginError');
+  box.textContent = msg;
+  box.classList.add('show');
+}
+function clearError(){
+  document.getElementById('loginError').classList.remove('show');
+}
+
+function fmtDate(ts){
+  if(!ts) return '—';
+  try{
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString('az-AZ', {day:'2-digit',month:'2-digit',year:'numeric'});
+  }catch(e){ return '—'; }
+}
+
+function renderDashboard(data, abonentKod){
+  document.getElementById('welcomeName').textContent = data.ad ? ('Xoş gəlmisiniz, ' + data.ad + '!') : 'Xoş gəlmisiniz!';
+  document.getElementById('dashTarif').textContent = data.tarif || '—';
+  document.getElementById('dashAbonent').textContent = abonentKod;
+  document.getElementById('dashSonOdenis').textContent = fmtDate(data.sonOdenisTarixi);
+  document.getElementById('dashBaglanma').textContent = fmtDate(data.baglanmaTarixi);
+
+  const balans = typeof data.balans === 'number' ? data.balans : 0;
+  const balansEl = document.getElementById('dashBalans');
+  balansEl.textContent = balans.toFixed(2) + ' ₼';
+  balansEl.style.color = balans < 0 ? '#b42318' : 'var(--primary)';
+
+  const statusEl = document.getElementById('dashStatus');
+  const warnBox = document.getElementById('debtWarning');
+  let status = data.status || 'aktiv';
+  if(status === 'bagli'){
+    statusEl.textContent = 'Bağlanıb';
+    statusEl.style.color = '#666';
+    warnBox.style.display = 'block';
+    warnBox.style.background = '#eee'; warnBox.style.color = '#555'; warnBox.style.border = '1px solid #ddd';
+    warnBox.textContent = 'Xidmətiniz bağlanıb. Yenidən aktivləşdirmək üçün bizimlə əlaqə saxlayın.';
+  } else if(balans < 0 || status === 'borclu'){
+    statusEl.textContent = 'Borclu';
+    statusEl.style.color = '#b42318';
+    warnBox.style.display = 'block';
+    warnBox.classList.add('show');
+    warnBox.textContent = 'Hesabınızda ' + Math.abs(balans).toFixed(2) + ' ₼ borc var. Xidmətin kəsilməməsi üçün ödənişi vaxtında edin.';
+  } else {
+    statusEl.textContent = 'Aktiv';
+    statusEl.style.color = 'var(--primary)';
+    warnBox.style.display = 'none';
+  }
+}
+
 document.getElementById('loginForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const errorBox = document.getElementById('loginError');
+  clearError();
   const entered = document.getElementById('captchaInput').value.trim().toUpperCase();
   if(entered !== currentCaptcha){
-    errorBox.classList.add('show');
+    showError('Təhlükəsizlik kodu yanlışdır. Yenidən cəhd edin.');
     currentCaptcha = generateCaptcha();
     captchaCodeEl.textContent = currentCaptcha;
     document.getElementById('captchaInput').value = '';
     return;
   }
-  errorBox.classList.remove('show');
-  document.getElementById('loginBox').style.display='none';
-  document.getElementById('dashboardBox').style.display='block';
+
+  const abonentKod = document.getElementById('abonentInput').value.trim();
+  const password = document.getElementById('passwordInput').value;
+  if(!abonentKod || !password){ showError('Bütün sahələri doldurun.'); return; }
+
+  const btn = document.getElementById('loginSubmitBtn');
+  btn.disabled = true; btn.textContent = 'Daxil olunur...';
+
+  const fakeEmail = abonentKod.toLowerCase().replace(/[^a-z0-9]/g,'') + '@ferdinet.local';
+
+  auth.signInWithEmailAndPassword(fakeEmail, password)
+    .then(cred => db.collection('customers').doc(cred.user.uid).get())
+    .then(doc => {
+      btn.disabled = false; btn.textContent = 'Daxil Ol';
+      if(!doc.exists){
+        showError('Hesab məlumatları tapılmadı. Dəstək xidməti ilə əlaqə saxlayın.');
+        auth.signOut();
+        return;
+      }
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('dashboardBox').style.display = 'block';
+      renderDashboard(doc.data(), abonentKod);
+    })
+    .catch(err => {
+      btn.disabled = false; btn.textContent = 'Daxil Ol';
+      showError('Abonent kodu və ya şifrə yanlışdır.');
+      currentCaptcha = generateCaptcha();
+      captchaCodeEl.textContent = currentCaptcha;
+      document.getElementById('captchaInput').value = '';
+    });
 });
 
 document.getElementById('logoutBtn').addEventListener('click', function(){
-  document.getElementById('dashboardBox').style.display='none';
-  document.getElementById('loginBox').style.display='block';
-  document.getElementById('loginForm').reset();
-  document.getElementById('loginError').classList.remove('show');
-  currentCaptcha = generateCaptcha();
-  captchaCodeEl.textContent = currentCaptcha;
+  auth.signOut().then(() => {
+    document.getElementById('dashboardBox').style.display = 'none';
+    document.getElementById('loginBox').style.display = 'block';
+    document.getElementById('loginForm').reset();
+    clearError();
+    currentCaptcha = generateCaptcha();
+    captchaCodeEl.textContent = currentCaptcha;
+  });
 });
 </script>
-
 <footer>
   <div class="container">
     <div class="footer-grid">
