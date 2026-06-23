@@ -14,14 +14,14 @@ const firebaseConfig = {
 export const firebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
 
-// Firestore-u restriktiv şəbəkələr/proxy-lər üçün avtomatik long-polling ilə başlat
+// Firestore-u DOĞRU verilənlər bazası ID-si ilə başlat (default deyil, "ferdinet")
 let _db;
 try {
   _db = initializeFirestore(firebaseApp, {
-    experimentalAutoDetectLongPolling: true,
-  });
+    experimentalForceLongPolling: true,
+  }, "ferdinet");
 } catch (e) {
-  _db = getFirestore(firebaseApp);
+  _db = getFirestore(firebaseApp, "ferdinet");
 }
 export const db = _db;
 

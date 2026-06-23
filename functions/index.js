@@ -10,7 +10,7 @@ const { initializeApp } = require("firebase-admin/app");
 const { getFirestore, Timestamp } = require("firebase-admin/firestore");
 
 initializeApp();
-const db = getFirestore();
+const db = getFirestore("ferdinet");
 
 exports.dailyDisconnectWarning = onSchedule(
   { schedule: "0 9 * * *", timeZone: "Asia/Baku" },
