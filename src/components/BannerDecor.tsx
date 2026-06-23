@@ -31,7 +31,7 @@ const PRESETS: { icon: keyof typeof ICONS; top?: string; left?: string; right?: 
 ];
 
 /**
- * Banner daxilində üzən, parallax hərəkət edən ikon nişanları.
+ * Banner daxilində üzən, parallax + daimi "float" hərəkəti olan ikon nişanları.
  * compact=true: kiçik (alt səhifə) banner-lər üçün daha az/kiçik element.
  */
 export default function BannerDecor({ compact = false }: { compact?: boolean }) {
@@ -53,6 +53,7 @@ export default function BannerDecor({ compact = false }: { compact?: boolean }) 
           }}
         >
           <div
+            className="floaty-badge"
             style={{
               width: "100%",
               height: "100%",
@@ -62,6 +63,8 @@ export default function BannerDecor({ compact = false }: { compact?: boolean }) 
               alignItems: "center",
               justifyContent: "center",
               backdropFilter: "blur(2px)",
+              animationDuration: `${3.2 + i * 0.6}s`,
+              animationDelay: `${i * 0.35}s`,
             }}
           >
             <svg
