@@ -12,9 +12,7 @@ export default function Footer() {
             </div>
             <p style={{fontSize:".9rem",color:"#a7bfa3",marginBottom:18}}>FerdiNet — Azərbaycanda yüksək sürətli fiber optik internet xidmətlərinin lider təminatçısı.</p>
             <div className="social-links">
-              <a href="https://instagram.com/s_akhundoff" target="_blank" rel="noopener" aria-label="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-              </a>
+              
             </div>
           </div>
           <div className="footer-col">
@@ -41,7 +39,7 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© 2026 FerdiNet. Bütün hüquqlar qorunur.</span>
-          <span>By <a href="https://instagram.com/s_akhundoff" target="_blank" rel="noopener">s_akhundoff</a></span>
+          <span>By <a href="https://aze-ai.az" target="_blank" rel="noopener">securtiy_group</a></span>
         </div>
       </div>
     </footer>
